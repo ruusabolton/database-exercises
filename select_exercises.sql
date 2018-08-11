@@ -1,5 +1,5 @@
 USE codeup_test_db;
-/*less than 20 mil certified sales*/
+/*Rock genre*/
 
-SELECT name, sales FROM albums
-  WHERE sales <=  20.0;
+SELECT name, genre FROM albums
+  WHERE genre =  'Rock';
