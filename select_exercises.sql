@@ -1,5 +1,5 @@
 USE codeup_test_db;
-/*year Sgt Pepper's Lonely Hearts Club was released*/
+/*genre of Nevermind*/
 
-SELECT release_date FROM albums
-  WHERE name = 'Sgt. Pepper''s Lonely Hearts Club Band';
+SELECT genre FROM albums
+  WHERE name = 'Nevermind';
