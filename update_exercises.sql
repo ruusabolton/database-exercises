@@ -1,9 +1,10 @@
 use codeup_test_db;
 
-/* all albums released before 1980*/
+/* all albums by Michael Jackson*/
 
 SELECT *
 FROM albums
-WHERE release_date < 1980;
+WHERE artist = 'Michael Jackson';
+
 
 
