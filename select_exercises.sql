@@ -1,5 +1,5 @@
 USE codeup_test_db;
-/*albums released in the 1990s*/
+/*less than 20 mil certified sales*/
 
-SELECT name, release_date FROM albums
-  WHERE release_date BETWEEN 1990 AND 1999;
+SELECT name, sales FROM albums
+  WHERE sales <=  20.0;
