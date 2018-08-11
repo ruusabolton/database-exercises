@@ -1,5 +1,5 @@
 USE codeup_test_db;
-/*name of all albums by Pink Floyd*/
+/*year Sgt Pepper's Lonely Hearts Club was released*/
 
-SELECT name FROM albums
-  WHERE artist = 'Pink Floyd';
+SELECT release_date FROM albums
+  WHERE name = 'Sgt. Pepper''s Lonely Hearts Club Band';
