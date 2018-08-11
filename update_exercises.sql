@@ -1,7 +1,9 @@
 use codeup_test_db;
 
-/* all albums in table*/
+/* all albums released before 1980*/
 
 SELECT *
-FROM albums;
+FROM albums
+WHERE release_date < 1980;
+
 
