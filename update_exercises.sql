@@ -1,9 +1,10 @@
 use codeup_test_db;
 
-/* update sales col by 10*/
+/* change Michael Jackson to Peter Jackson*/
 
 UPDATE albums
-SET sales = sales * 10;
+SET artist = 'Peter Jackson'
+WHERE artist = 'Michael Jackson';
 
 SELECT *
 FROM albums;
