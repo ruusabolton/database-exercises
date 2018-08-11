@@ -1,7 +1,10 @@
-CREATE DATABASE IF NOT EXISTS codeup_test_db;
-SHOW DATABASES;
-
-CREATE USER 'codeup_test_user'@'localhost' IDENTIFIED BY 'open1973';
-SELECT user from mysql.user;
-
-GRANT ALL ON codeup_test_db.* TO 'codeup_test_user'@'localhost';
+USE codeup_test_db;
+CREATE TABLE albums(
+  id int(10) unsigned NOT NULL AUTO_INCREMENT,
+  artist varchar(50) DEFAULT NULL,
+  name varchar(50) NOT NULL,
+  release_date int(4) NOT NULL,
+  sales float NOT NULL,
+  genre varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+);
