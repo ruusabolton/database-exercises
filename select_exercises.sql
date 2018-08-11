@@ -1,5 +1,5 @@
 USE codeup_test_db;
-/*genre of Nevermind*/
+/*albums released in the 1990s*/
 
-SELECT genre FROM albums
-  WHERE name = 'Nevermind';
+SELECT name, release_date FROM albums
+  WHERE release_date BETWEEN 1990 AND 1999;
