@@ -1,9 +1,10 @@
 use codeup_test_db;
 
-/* update sales col by 10*/
+/* move pre-1980 albums to 1800s.*/
 
 UPDATE albums
-SET sales = sales * 10;
+SET release_date = release_date - 80
+WHERE release_date < 1980;
 
 SELECT *
 FROM albums;
