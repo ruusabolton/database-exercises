@@ -6,13 +6,13 @@ INSERT INTO albums (artist, name, release_date, sales, genre)
 VALUES  
 ('Michael Jackson', 'Thriller', 1982, 47.3 , 'Pop, rock, R&B'),
 ('AC/DC', 'Back in Black', 1980,  26.1, 'Hard rock'),	
- ('Pink Floyd', 'The Dark Side of the Moon', 1973, 24.2, 'Progressive rock'),	
- ('Meat Loaf', 'Bat Out of Hell', 1977,	21.5, 'Hard rock, progressive rock'),	
- ('Whitney Houston', 	'The Bodyguard', 1992, 28.4,	'R&B, soul, pop, soundtrack'),	
- ('Eagles', 'Their Greatest Hits (1971–1975)', 1976, 32.2, 'Country rock, soft rock, folk rock'),
- ('Bee Gees / Various artists', 'Saturday Night Fever', 1977 ,21.6, 'Disco'),
- ('Fleetwood Mac',	'Rumours',	1977, 27.9, 'Soft rock'	),
- ('Various artists', 'Grease', 1978, 14.4, 'Soundtrack/50s rock and roll revival'),
+('Pink Floyd', 'The Dark Side of the Moon', 1973, 24.2, 'Progressive rock'),
+('Meat Loaf', 'Bat Out of Hell', 1977,	21.5, 'Hard rock, progressive rock'),
+('Whitney Houston', 	'The Bodyguard', 1992, 28.4,	'R&B, soul, pop, soundtrack'),
+('Eagles', 'Their Greatest Hits (1971–1975)', 1976, 32.2, 'Country rock, soft rock, folk rock'),
+('Bee Gees / Various artists', 'Saturday Night Fever', 1977 ,21.6, 'Disco'),
+('Fleetwood Mac',	'Rumours',	1977, 27.9, 'Soft rock'	),
+('Various artists', 'Grease', 1978, 14.4, 'Soundtrack/50s rock and roll revival'),
 ('Led Zeppelin', 'Led Zeppelin IV', 1971, 29.0, 'Hard rock, heavy metal, folk rock'),
 ('Michael Jackson', 'Bad', 1987, 19.3, 'Pop, funk, rock'),	
 ('Alanis Morissette', 'Jagged Little Pill', 1995, 24.4, 'Alternative rock'),	
@@ -38,4 +38,4 @@ VALUES
 ('Guns N'' Roses', 'Appetite for Destruction', 1987, 21.6, 'Hard rock' );
 
 
-select * from albums;
+select * from albums \G;
