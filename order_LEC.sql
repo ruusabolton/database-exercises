@@ -46,3 +46,25 @@ use employees;
 
 SELECT * FROM salaries
 ORDER BY to_date DESC;
+
+/*FUNCTIONS*/
+/*CONCAT FX*/
+
+select 'something';
+SELECT CONCAT (first_name, ' ', last_name, ' was born on ', birth_date)
+FROM employees
+LIMIT 5;
+
+/*show length of a string*/
+/*will print how many characters*/
+SELECT length('superagdagdgasgdsy4w3y64jgtjsf34y');
+/*will print first 5 characters from the left*/
+SELECT left('superagdagdgasgdsy4w3y64jgtjsf34y',5);
+
+select trim ('sdahery   ');
+
+select unix_timestamp();
+
+select concat(
+'Teaching people for ', unix_timestamp() - unix_timestamp(2014-02-14), ' seconds.'
+);
