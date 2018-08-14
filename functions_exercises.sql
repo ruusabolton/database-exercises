@@ -23,24 +23,28 @@ LIMIT 10;
  to find how many days they have been working at the company (Hint: You will also need to use now() or curdate()).*/
 
 /*Option1*/
-SELECT * FROM employees
+SELECT *, DATEDIFF(now(), hire_date) since_hired
+FROM employees
 WHERE hire_date BETWEEN '1990-01-01' AND '1999-12-31'
 AND birth_date LIKE '%-12-25'
 ORDER BY birth_date , hire_date DESC;
 
 /*Option2*/
 
-SELECT * FROM employees
+SELECT last_name, birth_date, hire_date, DATEDIFF(now(), hire_date) working_days_since_first_hire
+FROM employees
 WHERE hire_date LIKE '199%'
 AND birth_date LIKE '%-12-25'
 ORDER BY birth_date , hire_date DESC;
 
+/*Option3*/
 
-
-SELECT CONCAT(last_name,' was born on ', birth_date,'. It has been ', DATEDIFF(hire_date, now()), ' days since he was hired on ', hire_date, '.')
+SELECT CONCAT(last_name,' was born on ', birth_date,'. It has been ', DATEDIFF(now(), hire_date), ' days since he was hired on ', hire_date, '.')
 FROM employees
 WHERE hire_date BETWEEN '1990-01-01' AND '1999-12-31'
 AND birth_date LIKE '%-12-25'
 ORDER BY birth_date , hire_date DESC
 LIMIT 20;
+
+
 
