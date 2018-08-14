@@ -68,3 +68,61 @@ select unix_timestamp();
 select concat(
 'Teaching people for ', unix_timestamp() - unix_timestamp(2014-02-14), ' seconds.'
 );
+
+show warnings;
+
+SELECT first_name
+FROM employees
+GROUP BY first_name;
+
+/* group column by common attributes,
+e.g. gender or sometimes birthdates, needs to be specific in the SELECT statement*/
+
+SELECT *
+FROM employees
+WHERE birth_date LIKE '%-05-03';
+
+
+/*will return the single birhdate that everyone shares*/
+SELECT birth_date
+FROM employees
+WHERE birth_date = '1961-05-03'
+GROUP BY birth_date;
+
+/*will return the single birthdate that everyone shares, and number of how many entries have that birthdate*/
+SELECT birth_date, count(birth_date) number_of_entries
+FROM employees
+WHERE birth_date = '1961-05-03'
+GROUP BY birth_date;
+
+
+/*will return the 2 entries of birthdates and number of how many entries have that specific birthdate*/
+SELECT birth_date, count(birth_date)  AS number_of_entries
+FROM employees
+WHERE birth_date = '1961-05-03'
+  OR birth_date IN ('1958-05-03')
+GROUP BY birth_date;
+
+/* same count will be returned with below select count fx*/
+SELECT birth_date, COUNT(*) AS number_of_entries FROM employees WHERE birth_date = '1961-05-03';
+
+/*Aggregate Fxs*/
+/*columns in select statement must be called in group by, otherwise error;
+EXCEPT aggregate fxs like Count, sum, datediff(), etc*/
+/*print names that do not have 'a' in them*/
+
+SELECT COUNT(first_name)
+FROM employees
+WHERE first_name NOT LIKE '%a%';
+
+SELECT birth_date, count(birth_date)  AS number_of_entries, first_name, last_name
+FROM employees
+WHERE birth_date = '1961-05-03'
+  OR birth_date IN ('1958-05-03')
+GROUP BY birth_date, first_name, last_name
+ORDER BY number_of_entries ASC;
+
+SELECT count(first_name), " is", gender
+FROM employees e
+WHERE e.first_name = 'Kokou'
+  GROUP BY e.gender;

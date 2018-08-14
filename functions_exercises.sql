@@ -39,7 +39,8 @@ ORDER BY birth_date , hire_date DESC;
 
 /*Option3*/
 
-SELECT CONCAT(last_name,' was born on ', birth_date,'. It has been ', DATEDIFF(now(), hire_date), ' days since he was hired on ', hire_date, '.')
+/*concat_ws adds the separator after each comma - in htis case, separator is a space*/
+SELECT CONCAT_ws(' ',last_name,'was born on', birth_date,'. It has been', DATEDIFF(now(), hire_date), 'days since he was hired on', hire_date, '.')
 FROM employees
 WHERE hire_date BETWEEN '1990-01-01' AND '1999-12-31'
 AND birth_date LIKE '%-12-25'
@@ -47,4 +48,11 @@ ORDER BY birth_date , hire_date DESC
 LIMIT 20;
 
 
+/*concat_ws adds the separator after each comma - in this case, separator is -- */
 
+SELECT CONCAT_ws('--',last_name,'was born on', birth_date,'. It has been', DATEDIFF(now(), hire_date), 'days since he was hired on', hire_date, '.')
+FROM employees
+WHERE hire_date BETWEEN '1990-01-01' AND '1999-12-31'
+      AND birth_date LIKE '%-12-25'
+ORDER BY birth_date , hire_date DESC
+LIMIT 20;
