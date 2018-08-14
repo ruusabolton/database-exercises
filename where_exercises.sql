@@ -8,7 +8,7 @@ where first_name IN ('Irena', 'Vidya', 'Maya');
 
 SELECT 'Find all employees whose last name starts with ''E'' — 7,330 rows. ' AS 'exercise 3';
 
-/**/
+/*doesn't care about capitalization*/
 
 SELECT * FROM employees
 WHERE last_name LIKE 'E%';
@@ -16,9 +16,12 @@ WHERE last_name LIKE 'E%';
 
 SELECT 'Find all employees hired in the 90s — 135,214 rows. ' AS 'exercise 4';
 
-/**/
+/*option1 - same result*/
 SELECT * FROM employees
 WHERE hire_date BETWEEN '1990-01-01' AND '1999-12-31';
+
+/*Option2 - same result*/
+SELECT * FROM employees WHERE hire_date LIKE '199%';
 
 
 SELECT 'Find all employees born on Christmas — 842 rows. ' AS 'exercise 5';
@@ -46,12 +49,18 @@ OR first_name = 'Maya';
 
 SELECT 'Find all employees with first names ''Irena'', ''Vidya'', or ''Maya'' and are male— 441 rows .
 ' AS 'exercise 2';
+/*option1*/
 SELECT * FROM employees
-WHERE first_name IN ('Irena',
- 'Vidya',
- 'Maya')
+WHERE (first_name = 'Irena'
+OR first_name = 'Vidya'
+OR first_name = 'Maya')
 AND gender = 'M';
 
+/*opion2*/
+
+SELECT * FROM employees
+WHERE first_name IN ('Irena', 'Vidya', 'Maya')
+AND gender = 'M';
 
 SELECT 'Find all employees whose last name starts or ends with ''E'' — 30,723 rows.' AS 'exercise 3';
 
@@ -69,8 +78,15 @@ AND last_name LIKE 'e%';
 SELECT 'Find all employees hired in the 90s and born on Christmas — 362 rows.
 ' AS 'exercise 5';
 
+/*Option1*/
 SELECT * FROM employees
 WHERE hire_date BETWEEN '1990-01-01' AND '1999-12-31'
+AND birth_date LIKE '%-12-25';
+
+/*Option2*/
+
+SELECT * FROM employees
+WHERE hire_date LIKE '199%'
 AND birth_date LIKE '%-12-25';
 
 SELECT 'Find all employees with a ''q'' in their last name but not ''qu'' — 547 rows.
