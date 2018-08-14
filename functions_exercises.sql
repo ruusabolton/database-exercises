@@ -35,11 +35,12 @@ WHERE hire_date LIKE '199%'
 AND birth_date LIKE '%-12-25'
 ORDER BY birth_date , hire_date DESC;
 
-select concat(
-'Teaching people for ', datediff() - datediff(curnow()), ' seconds.'
-);
 
-SELECT CONCAT(last_name,' was hired on ', hire_date,'. It has been ', DATEDIFF(hire_date, now()), ' days since ', hire_date, '.')
+
+SELECT CONCAT(last_name,' was born on ', birth_date,'. It has been ', DATEDIFF(hire_date, now()), ' days since he was hired on ', hire_date, '.')
 FROM employees
-ORDER BY emp_no
-LIMIT 10;
+WHERE hire_date BETWEEN '1990-01-01' AND '1999-12-31'
+AND birth_date LIKE '%-12-25'
+ORDER BY birth_date , hire_date DESC
+LIMIT 20;
+
