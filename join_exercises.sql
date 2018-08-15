@@ -99,29 +99,6 @@ order by salaries.salary;
 
 
 /*Find the names of all current employees, their department name, and their current manager's name.*/
-SELECT DISTINCT concat( e.first_name,' ', e.last_name) AS 'Employee Name', d.dept_name AS 'Department Name', concat(e.first_name, ' ', e.last_name) AS 'Manager Name'
-FROM employees e
-INNER JOIN dept_manager dm ON dm.emp_no = e.emp_no
-JOIN departments d ON d.dept_no = dm.dept_no
-JOIN dept_emp de ON de.dept_no = d.dept_no
-UNION
-SELECT DISTINCT concat( e.first_name,' ' , e.last_name) AS 'Employee Name', d.dept_name AS 'Department Name', concat(e.first_name, ' ', e.last_name) AS 'Manager Name'
-FROM employees e
-JOIN dept_manager AS dm ON e.emp_no != dm.emp_no
-JOIN departments d ON d.dept_no = dm.dept_no
-JOIN dept_emp de ON de.dept_no = d.dept_no
-WHERE de.to_date = '9999-01-01';
-
-UNION ALL
-
-SELECT concat( e.first_name,' ', e.last_name) , d.dept_name AS 'Department Name', concat(e.first_name, ' ', e.last_name) AS 'Department Mgr'
-FROM departments d
-JOIN dept_manager dm ON dept_manager.dept_no = d.dept_no
-JOIN employees e ON dept_manager.emp_no = employees.emp_no
-where dm.to_date = '9999-01-01'
-GROUP BY  e.first_name, e.last_name, d.dept_name
-
-
 SELECT
 concat(mortals.first_name, ' ',
 mortals.last_name) AS 'Employee Name',
