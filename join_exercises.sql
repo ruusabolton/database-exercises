@@ -36,3 +36,15 @@ use join_test_db;
 -- ('mike', 'mike@example.com', null);
 
 -- select * from users;
+
+/*Use count and the appropriate join type to get a list of roles along with the number of users
+that has the role. Hint: You will also need to use group by in the query.*/
+
+--
+SELECT users.role_id,  COUNT(*) AS 'Users in this role',roles.name
+FROM users
+JOIN roles ON users.role_id = roles.id
+group by  users.role_id, roles.name;
+
+
+-- select * from users;
