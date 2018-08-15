@@ -1,11 +1,21 @@
--- USE codeup_test_db;
+USE codeup_test_db;
+describe albums;
+ALTER TABLE albums
+  ADD UNIQUE (name, artist);
+
+  DROP INDEX name ON albums;
+  ,
+  DROP KEY name_2,
+  DROP KEY name_3,
+  DROP KEY artist;
+
+show index from albums;
 /*Rock genre*/
 
 -- SELECT name, genre FROM albums
 --   WHERE genre =  'Rock';
 
--- ALTER TABLE albums
---  ADD UNIQUE (artist, name);
+
 
 /*Testing constraint*/
 -- INSERT INTO albums (artist, name, release_date, sales, genre)
@@ -19,4 +29,4 @@ use employees;
 -- describe dept_manager;
 -- describe employees;
 -- describe salaries;
-describe titles;
+-- describe titles;

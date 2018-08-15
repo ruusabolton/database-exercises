@@ -69,7 +69,7 @@ FROM departments
 JOIN dept_manager ON dept_manager.dept_no = departments.dept_no
 JOIN employees ON dept_manager.emp_no = employees.emp_no
 WHERE employees.gender = 'F'
-AND  dept_manager.to_date = '9999-01-01';
+AND  dept_manager.to_date > NOW();
 
 /*Find the current titles of employees currently working in the Customer Service department.*/
 
@@ -79,29 +79,47 @@ JOIN employees ON employees.emp_no =titles.emp_no
 JOIN dept_emp ON titles.emp_no = dept_emp.emp_no
 JOIN departments ON dept_emp.dept_no = departments.dept_no
 WHERE departments.dept_name = 'Customer Service'
-AND  titles.to_date = '9999-01-01'
+AND  titles.to_date > NOW()
 GROUP BY titles.title;
 
 
 /*Find the current salary of all current managers.*/
 
-SELECT departments.dept_name as 'Department Name', concat_ws(' ', employees.first_name, employees.last_name) AS 'Department Manager', salaries.salary AS Salary
+SELECT DISTINCT departments.dept_name as 'Department Name', concat(employees.first_name, ' ', employees.last_name) AS 'Department Manager', salaries.salary AS Salary
 FROM departments
-right JOIN dept_manager ON dept_manager.dept_no = departments.dept_no
-right JOIN salaries ON dept_manager.emp_no = salaries.emp_no
-Left JOIN employees ON salaries.emp_no = employees.emp_no
-WHERE dept_manager.to_date = '9999-01-01'
-GROUP BY  departments.dept_name,   employees.last_name, employees.first_name, salary
+LEFT JOIN dept_manager ON dept_manager.dept_no = departments.dept_no
+LEFT JOIN salaries ON salaries.emp_no = dept_manager.emp_no
+LEFT JOIN employees ON employees.emp_no= salaries.emp_no
+WHERE dept_manager.to_date > NOW()
+And salaries.to_date > now()
+GROUP BY    employees.last_name, employees.first_name, salary, departments.dept_name
 order by salaries.salary;
 
 
 
 
 /*Find the names of all current employees, their department name, and their current manager's name.*/
-SELECT concat_ws(' ', employees.first_name, employees.last_name) AS 'Employee',
-concat_ws(' ', employees.first_name, employees.last_name) AS 'Department Manager'
+SELECT DISTINCT concat( employees.first_name,' ', employees.last_name) AS 'Employee Name', departments.dept_name AS 'Department Name', concat(employees.first_name, ' ', employees.last_name) AS 'Manager Name'
 FROM employees
-JOIN dept_manager ON employees.emp_no = dept_manager.emp_no
-JOIN dept_emp ON departments.dept_no = dept_emp.dept_no
+JOIN employees ON employees.emp_no != dept_manager.emp_no
+JOIN employees AS 'Dept_Mgr' ON employees.emp_no = dept_manager.emp_no
+JOIN dept_manager ON Dept_Mgr.emp_no = employees.emp_no
+JOIN departments ON departments.dept_no = Dept_Mgr.dept_no
+JOIN dept_emp ON dept_emp.dept_no = departments.dept_no
+WHERE dept_emp.to_date > now();
 
+SELECT concat( e.first_name,' ', e.last_name) , d.dept_name AS 'Department Name', concat(e.first_name, ' ', e.last_name) AS 'Department Mgr'
+FROM employees e
+JOIN dept_emp de ON e.emp_no = de.emp_no
+JOIN departments d ON de.dept_no = d.dept_no
+JOIN dept_manager dm ON dm.dept_no = d.dept_no
+WHERE de.to_date = '9999-01-01'
 
+UNION ALL
+
+SELECT concat( e.first_name,' ', e.last_name) , d.dept_name AS 'Department Name', concat(e.first_name, ' ', e.last_name) AS 'Department Mgr'
+FROM departments d
+JOIN dept_manager dm ON dept_manager.dept_no = d.dept_no
+JOIN employees e ON dept_manager.emp_no = employees.emp_no
+where dm.to_date = '9999-01-01'
+GROUP BY  e.first_name, e.last_name, d.dept_name

@@ -38,4 +38,4 @@ VALUES
 ('Guns N'' Roses', 'Appetite for Destruction', 1987, 21.6, 'Hard rock' );
 
 
-select * from albums \G;
+select * from albums;
