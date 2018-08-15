@@ -126,3 +126,6 @@ SELECT count(first_name), " is", gender
 FROM employees e
 WHERE e.first_name = 'Kokou'
   GROUP BY e.gender;
+
+
+/*INDICES*/
