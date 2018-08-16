@@ -116,3 +116,20 @@ JOIN employees mgmt ON manager.emp_no = mgmt.emp_no
 WHERE de.to_date > now()
 AND manager.to_date > now()
 ORDER BY d.dept_name asc, mgmt.last_name DESC;
+
+
+SELECT first_name, last_name, birth_date
+FROM employees
+WHERE emp_no IN (
+    SELECT emp_no
+    FROM dept_manager
+)
+LIMIT 10;
+
+SELECT first_name, last_name, birth_date
+FROM employees
+WHERE emp_no IN (
+    SELECT emp_no
+    FROM titles
+    WHERE title like '%engineer%'
+)limit 10;
